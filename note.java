@@ -6,7 +6,8 @@ agar in 4 directiory ra dashte bashim baghiyeye project mohem nist va ba dashtan
 moshkeli baraye project rokh dahad mitavanim in 4 directory ra bardashte va project ra dobare run mikonim
 
 --python manage.py collectstatic '--noinput'
-/noinput/ baes mishavad k agar bad az command niyaz b confirm bod masalan yes niyaz bod bznim khodesh handel konad va yes bzanad
+/noinput/ baes mishavad k agar bad az command niyaz b confirm bod masalan yes niyaz bod bznim
+khodesh handel konad va yes bzanad
 "noinput" ro dar hameye sharayet behtar ast bzarim baraye ehtiyat
 
 "create superuser"
@@ -26,3 +27,10 @@ yek file hast k config haye asli nginx dar an gharar migirand va bayad dar file 
 
 "docker-compose.yml"
 
+type bind yani inke directioryi k toye syestem mn hast bind she b directoryi k roye image hast
+
+
+
+"DockerFile"
+--ENV PYTHONDONTWRITEBYTECODE:
+    python dar avalin run yek seri file pyc misazad k compile shode va cache hastand
