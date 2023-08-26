@@ -34,3 +34,21 @@ type bind yani inke directioryi k toye syestem mn hast bind she b directoryi k r
 "DockerFile"
 --ENV PYTHONDONTWRITEBYTECODE:
     python dar avalin run yek seri file pyc misazad k compile shode va cache hastand
+    run shodan project yekam kond mishe vali sorat ejraye barname bishtar mishavad
+    vali ma b an ehtiyaj nadarim dar in project pas an ra barabar 1 gharar midahim
+
+--ENV PYTHONUNBUFFERED:
+    dar noinput miyayad va vorodi va khoroji hara handle mikonad
+
+--ENV DJANGO_SUPERUSER_PASSWORD
+    password superuser ra set mikonim
+
+
+directorie k mikhahad bind shavad (target) ra misazim k haman /app ast
+--RUN mkdir/app
+--WORKDIR /app
+
+python3 manage.py createsupeuser --user admin --email admin@gmail.com --noinput;
+; entehayi baes mishavad k agar in khat error dad bazham khathaye badi ejrashavand
+
+
