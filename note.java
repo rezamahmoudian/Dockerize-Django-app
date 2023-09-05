@@ -52,3 +52,16 @@ python3 manage.py createsupeuser --user admin --email admin@gmail.com --noinput;
 ; entehayi baes mishavad k agar in khat error dad bazham khathaye badi ejrashavand
 
 
+"nginx/dockerfile"
+az image nginx:alpine estefade mikonad va config defalt image ra pak mikonad va configi k khodemon neveshtim ro
+b on directory ezafe mikone
+
+"default.conf"
+yel upstream b esme app misazim va migim k in upstream port 8000 ro gosh kone va on app ro roye port 80 proxy kone
+in upstream ra bayad b allowed host ezafe konim
+
+location /media {
+    alias /app/media
+}
+harvaght varkhast b media omad az app/media anhara bekhan (in directory haman directorir ast k dar docke compose
+neveshtim)
