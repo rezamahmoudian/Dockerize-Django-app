@@ -16,6 +16,22 @@ services:
         source: './volumes/app'
         target: '/app'
 
+  mariadb:
+    image: 'mariadb:latest'
+    container_name: 'mariadb'
+    restart: 'always'
+    expose:
+      - '3306'
+    environment:
+      - "MARIADB_DATABASE=django_app"
+      - "MARIADB_USER=django_user"
+      - "MARIADB_PASSWORD=1234"
+      - "MARIADB_ROOT_PASSWORD=1234"
+    volumes:
+      - type: 'bind'
+        source: './volumes/dbdata'
+        target: '/var/lib/mysql'
+
   nginx:
     build: './nginx'
     container_name: 'nginx'

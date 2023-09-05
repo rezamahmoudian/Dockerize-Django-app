@@ -65,3 +65,34 @@ location /media {
 }
 harvaght varkhast b media omad az app/media anhara bekhan (in directory haman directorir ast k dar docke compose
 neveshtim)
+
+
+'''
+add mariadb docker settings
+'''
+"docker-compose"
+dar docker compose ma bayad yek mariadb ra ezafe konim
+
+ mariadb:
+    image: 'mariadb:latest'
+    container_name: 'mariadb'
+    restart: 'always'
+    expose:
+      - '3306'
+    environment:
+      - "MARIADB_DATABASE=django_app"
+      - "MARIADB_USER=django_user"
+      - "MARIADB_PASSWORD=1234"
+      - "MARIADB_ROOT_PASSWORD=1234"
+    volumes:
+      - type: 'bind'
+        source: './volumes/dbdata'
+        target: '/var/lib/mysql'
+
+b jaye build inbar bayad az image estefade konim va image mariadb ra b an bdahim
+container_name ra mariadb gharar midahim
+roye port 3306 expose mikonim
+dar volumes directory dbdata ra b /var/lib/mysql bind mikonim (in directory haman poshei ast k etelaat mysql dar an vojod darad
+k ma dbdata khod ra b an bind mikonim //yani inke in directory roye image mariadb ra datash ra b dbdata ma vasl kon)
+
+
