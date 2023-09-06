@@ -16,7 +16,8 @@ RUN pip install django junicorn mysqlclient
 
 RUN apk del gcc python3-dev musl-dev
 
-CMD python3 manage.py makemigrations --noinput &&\
+CMD -while ! python3 manage.py sqlflush > /dev/null 2>&1; do sleep 1; done &&\
+    python3 manage.py makemigrations --noinput &&\
     python3 manage.py migrate --noinput &&\
     python3 manage.py collectstatic --noinput &&\
     python3 manage.py createsupeuser --user admin --email admin@gmail.com --noinput; \

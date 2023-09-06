@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="de44ed1c-bddb-45a3-9395-ad391caaac47" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/note.java" beforeDir="false" afterPath="$PROJECT_DIR$/note.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/volumes/app/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/volumes/app/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +113,7 @@
       <workItem from="1692773351972" duration="5753000" />
       <workItem from="1693034107591" duration="3523000" />
       <workItem from="1693895920399" duration="8459000" />
-      <workItem from="1693997314559" duration="1995000" />
+      <workItem from="1693997314559" duration="3858000" />
     </task>
     <servers />
   </component>

@@ -108,7 +108,7 @@ dar alpine bayad az in command ha estefade konim
 3 pakage aval yani (gcc python3-dev musl-dev)baraye nasb mariadb-dev niaz hastand vali bad az nasb mariadb-dev digar niazi
 b anha nist va baraye payin bordan hajm image dar nahayat anhara hazf mikonim
 -RUN apk del gcc python3-dev musl-dev
-
+// in dastorat ra bayad dar docker file ezafe konim
 
 dar marhale badi ma bayad setting project django ro taghyir bdahim va database mysql ra b onvan database pishvarz project
 gharar dahim
@@ -130,3 +130,32 @@ az anha estefade mikonim va barabar ba maghadir setting khod gharar midahim
 vaghto yek image b image haye digar niaz dashte bashad bayad dar docker compose vaghti an image ra misazim
 dar ghesmate depends_on moshakhas konim k b che image haye digari niaz darad
 b onvan mesal app b nginx va mariadb niaz darad vali mariadb va nginx b image digari niaz nadarand
+
+
+"moshkel ejraye ham zaman container ha"
+container app hatman bayad bad az ejraye kamel container mariadb ejra shavad va agar hamzaman ba an ejra shavad b error mikorim
+baraye hal kardan in moshkel mitavanim az rah haye zir estefade konim
+-CMD sleep 10
+yani 10s sabr kon ta dar an 10s container mariadb b tor kamel ejra shavad
+
+vali ravesh behtar ine k commandi k b ma error mide ro peyda konim va bgim k ta vaghti in command error mide dobare khodesh
+ro ejra kon injori  inghad in command ejra mishe va error mikore ta mariadb b tor kamel ejra she va bad on command error nmikhore
+va baghiyeye marahel tey mishan
+
+-while ! python3 manage.py migrate --noinput ; do sleep 1; done
+vaghti yek command b error mikore baraye ma false barmigardone
+pas ma in shart ro gozashtim k ta vaghti k maquse command true bod (yani command false bargardond) 1 saniye sleep kon va dobare
+emtehan kon ta vaghti k command b error bokhore va false bargardone dar in halghe gir mikonim ta command b dorosti ejrashavad
+
+baraye inke error haye marbot b in talashha baraye ma namayesh dade nashavand bayad az dastore zir estefade konim
+-while ! python3 manage.py migrate --noinput > /dev/null 2>&1; do sleep 1; done
+in command miyad va result in dastor ro dar fazaye dev/null mirizad va khoroji mahv mishe vali error ha namayesh dade mishan
+va baraye mahv shodan error ha ba dastor 2>&1 error haro b terminal1 redirect mikonim va intori kamelan mahv mishan
+
+dar in halat yek mishkel b vojod miyad va onam ine k migration haye anjam shode ham b ma namayesh dade nmishan chon khodemon
+goftim k namayesh dade nashe
+baraye hale in moshkel ma mitonim in try ha baraye vasl shodan database ro ba dastor digeii anjam bdim b jaye dastor migrate
+-while ! python3 manage.py sqlflush > /dev/null 2>&1; do sleep 1; done
+dastore 'sqlflush' table haye mojod dar database ro b ma namayesh mide pass baraye ejraye on mysql bayad amade bashe
+pas kheyli rahat mitonim az on baraye test amade bodan mysql estefade konim va baraks migration khoroji on ro ham niaz nadarim
+va ba namayesh nadadanesh ham moshkeli nadarim
