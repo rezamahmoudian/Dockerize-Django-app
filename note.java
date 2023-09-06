@@ -91,8 +91,42 @@ dar docker compose ma bayad yek mariadb ra ezafe konim
 
 b jaye build inbar bayad az image estefade konim va image mariadb ra b an bdahim
 container_name ra mariadb gharar midahim
+restart always yani inke agar b error khord khodesh restart beshe
 roye port 3306 expose mikonim
 dar volumes directory dbdata ra b /var/lib/mysql bind mikonim (in directory haman poshei ast k etelaat mysql dar an vojod darad
 k ma dbdata khod ra b an bind mikonim //yani inke in directory roye image mariadb ra datash ra b dbdata ma vasl kon)
+inkar baes mishe k vahgti ma mikaym project ro restart konim etelat ma dar dbdata baghimimanand va database ma pak nmishavad
+
+"mysqlclient"
+baraye vasl shodan project django b database mysql ya mariadb ma bayad az pakage 'mysqlclient' estefade konim
+in pakage =mysqlclient= khodesh b tanhayi ghabel nasb nist va b yek pakage vaset baraye nasb niaz darad
+dar debyan va ubonto in pakage vaset  lib mariadb client-def hast
+dar alpine bayad az in command ha estefade konim
+-RUN apk update
+-RUN apk add --no-cache gcc python3-dev musl-dev mariadb-dev
+'--no-cache'yani inke filehaye download shode ro negahdari nakon
+3 pakage aval yani (gcc python3-dev musl-dev)baraye nasb mariadb-dev niaz hastand vali bad az nasb mariadb-dev digar niazi
+b anha nist va baraye payin bordan hajm image dar nahayat anhara hazf mikonim
+-RUN apk del gcc python3-dev musl-dev
 
 
+dar marhale badi ma bayad setting project django ro taghyir bdahim va database mysql ra b onvan database pishvarz project
+gharar dahim
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get("MARIADB_DATABASE"),
+        'USER': os.environ.get("MARIADB_USER"),
+        'PASSWORD': os.environ.get("MARIADB_PASSWORD"),
+        'HOST': os.environ.get("MARIADB_HOST")
+    }
+}
+in moteghayere haye mohiti(environment) ha ra ma dar container app dar docker compose set mikonim va sepas ba dastore os.environ
+az anha estefade mikonim va barabar ba maghadir setting khod gharar midahim
+
+
+"depends_on"
+vaghto yek image b image haye digar niaz dashte bashad bayad dar docker compose vaghti an image ra misazim
+dar ghesmate depends_on moshakhas konim k b che image haye digari niaz darad
+b onvan mesal app b nginx va mariadb niaz darad vali mariadb va nginx b image digari niaz nadarand

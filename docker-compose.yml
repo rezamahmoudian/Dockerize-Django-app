@@ -1,6 +1,6 @@
 version: "3.7"
 
-
+# majmoeie az container ha
 services:
 
   app:
@@ -11,10 +11,18 @@ services:
 #      - '8000'
     ports:
     - "8000:8000"
+    environment:
+      - "MARIADB_DATABASE=django_app"
+      - "MARIADB_USER=django_user"
+      - "MARIADB_PASSWORD=1234"
+      - "MARIADB_HOST=1234"
     volumes:
       - type: 'bind'
         source: './volumes/app'
         target: '/app'
+    depends_on:
+      - mariadb
+      - nginx
 
   mariadb:
     image: 'mariadb:latest'
