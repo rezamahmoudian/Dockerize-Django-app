@@ -1,3 +1,168 @@
+"image"
+templati az docker k roye system ma vojod darad
+
+
+"container"
+imagi k run shode bashad va darhale estefade az an bashim
+
+
+"docker ps"
+neshan dadan container haye darhal ejra
+
+
+"docker ps -a"
+container hayi k ghablan run kardim va alan run nist ro ham b ma neshon mide
+
+
+"docker run -d ..."
+-d baes mishavad container ma diatach shavad va dar pas zamine run shavad va ba baste shodan terminal baste nashavad
+
+
+"docker run -d --name <name>"
+dadan name b container
+dar in sorat container name mara migirad na name randomi k khode docker b an midahad
+
+
+"docker stop <id> or <name>"
+stop kardan container
+age chand ta name ya id posht sar ham bzanim hame stop mishan
+
+
+"docker stop $(docker ps -q)"
+stop kardan hameye container ha
+docker ps -q id hameye container haye darhal ejra ra b ma midahad
+
+
+"docker start $(docker ps -aq)" //fek konam in behtar bashe "docker start $(docker images -q)"
+start kardan hame container ha
+
+
+"docker rm <id> or <name>"
+hazf container
+
+"docker rm $(docker ps -aq)"
+hazf hame container ha
+
+
+"docker iamges"
+list image ha
+
+
+"docke rmi <id> or <name>"
+hazf image
+
+
+"docker save -o home/rezaM/... nginx"
+zakhireye image gofte shode dar system
+
+
+"docke load -i home/rezaM/Desktop/nginx-image"
+load kardan image k az ghabl dar system zakhire kardim
+
+
+"docker pull nginx or nginx:alpine or <any image>"
+pull kardan image
+
+
+"docker run -d --name <name> -p 8080:80 nginx"
+system ma port darad va har container ham port darad ma bayad moshakhas konim k vaghti b felan port az system ma darkhast dade shod
+felan port dar felan container fara khonde shavad
+-p 8080:80 yani inke agar b port 8080 system darkhast dade shod hamon port 80 nginx fara khonde shavad
+
+
+dastresi b bash containeri k diatach kardim va dar pas zamine dahal ejrast:
+"docker exec -it <name> or <id> bash"
+vared shodan b bash container
+deghat konid k ba zadan in dastor shoma digar daron system khodeton nistid va vared container shodid va masalan agar
+dastor cat /etc/os-release ro vared konid system amel container namayesh dade mishavad na system shoma
+ya masalan ls bgirim file haye container ra mibinim
+
+
+"docker exec -it <nginx:alpine> sh"
+chon noskeye alpine bash nadare mishe az in dastor estefade kard va b shell on vasl shod
+
+
+"volume"
+hamontor k ghablan goftim vaghti ma yek container darim va darhal ejrast va vared on mishim dige toye system khodemon
+nistim va faghat b filehaye container dastresi darim va agar bkhaym file khodemon toye in container baramon ejra she
+masalan age bkhaym bjaye safhe home pishfarz nginx file home site khodemon bala biyad bayad file hayi k darim ro toye
+container jaygozin file haye pishfarz konim k khob kare sakhtiye va ba harbar bastan container on ha ham hazf mishan
+
+rahe behtar estefade az volume hast
+volume yek directory toye system mast k b yek directory dar container bind mishe va on container miyad va on directorish ro
+b in directory dar system ma motasel mikone va ma vaghti vared on directory az container mishim engar k vared directorye az
+system khodemon shodim k b onvan volume entekhabesh kardim
+har taghyiri k toye volume bdim toye on directory az container k b on bind shode ham emal mishe
+
+asan engar volume toye container gharar migire
+
+
+"docker run -d -p 8000:80 -v /home/rezaM/Desktop/template:/usr/share/nginx/html nginx"
+-v baraye neshan dadan volume ast
+bad az -v bayad address directorie system khodemon ro vared konim va bad az on moshakhas konim k b koja bind shavad
+yani alan template ro b /user/share/nginx/html bind kardim va hala ba ejraye nginx site ma bala miayad
+
+
+"docker run -d -p 8000:80 -v /home/rezaM/Desktop/template:/usr/share/nginx/html:ro nginx"
+hamontor k goftim vaghti ma az volume estefade mikonim volume ma b container bind mishe va har taghyiri k toye
+volume bdim toye container ham taghyir mikone(aslan khodeshe k rafte to container) vali in masale ham vojod dare k
+age ma vared container shim va onja in file haye volume ro taghyir bdim on file ha toye system ma ham taghyir mikonan
+masalan mitonim az toye container hame file haro taghyir bdim k khob in khob nist va baraye jelogiri az in etefagh
+bad az moshakhas kardan volume :ro mizarim ta read only bashan va toye container nashe on haro taghyir dad
+
+
+"Dockerfile"
+docker file -- build ---> image -- run ---> container
+
+sample Dockerfile:
+    FROM nginx:alpine
+    Add ./templates /usr/share/nginx/html
+in docker file miyad va az image nginx noskheye alpine estefade mikonad va file templates ro toye directory neveshte
+shode az in image mirize
+ma mitonim az in dockerfile build bgirim va yek image jadid ba name delkhah khodemon besazim k dar image jadid ma
+file haye templates toye directory /usr/share/nginx/html vojod daran
+baraye build gereftan az dastor zir estefade mikonim
+"docker build -t <name>:<version>"
+in dastor bayad dar haman directory k Dockerfile gharar darad vared shavad
+
+hata mitonim az yek dockerfile chand image bsazim
+"docker build -t website:latest -t website:0.0.1"
+az docker file ma do image ba name website dade mishavad k version yeki latest hast va version dige adadi neveshte mishavad
+
+
+"docker-compose"
+ma dar yek project az chandin image estefade mikonim
+che image haye az ghabl sakhte shode mesl mysql
+che image hayi k khodemon ba docker file misazim mesl app ya web server ma
+pas ma yek image nadarim va chand image darim k bayad dar yek network b tor khas va ba yek seri ravabet khas
+kar konnad
+baraye in hadaf behtarin kar estefade az docker compose hast
+
+agar docker file dashte bashim toye docker compose bayad az on buil bgirim 'build:<esme image>'
+vali age docker file nadashtim va mikhastim mostaghiman az image estefade konim b in shekl minevisim 'image:<esme image>'
+
+az docker compose baraye in estefade mikonim k digae niazi b zadan dastorat docker nabashad masalan b jaye
+zadan dastor -docker run -d -p 8000:80 --name website nginx:alpine
+in eteleat ra vared file docker-compose mikonim
+    version '3'
+    services:
+        image: nginx:alpine
+        container_name: website
+        ports:
+          -8000:80
+
+//in dastorat bayad dar directorie zade shavand ke docker-compose.yml dar an vojod dashte bashad
+"docker-compose up"
+start kardan container haye mojod dar docker compose
+
+
+"docker-compose up -d"
+run shodan container ha b sorat diatach va bdon niaz b baz negah dashtan terminal
+
+
+"docker-compose down"
+ham container ra stop mikonad ham anra hazf mikonad
+
 
 
 "app media static dbdata"(etelaat databse) bayad dar directorihaye khas zakhire shavand chon gahi oghat niyaz ast
@@ -159,3 +324,4 @@ baraye hale in moshkel ma mitonim in try ha baraye vasl shodan database ro ba da
 dastore 'sqlflush' table haye mojod dar database ro b ma namayesh mide pass baraye ejraye on mysql bayad amade bashe
 pas kheyli rahat mitonim az on baraye test amade bodan mysql estefade konim va baraks migration khoroji on ro ham niaz nadarim
 va ba namayesh nadadanesh ham moshkeli nadarim
+

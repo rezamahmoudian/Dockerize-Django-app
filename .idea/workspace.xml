@@ -4,7 +4,6 @@
     <list default="true" id="de44ed1c-bddb-45a3-9395-ad391caaac47" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/note.java" beforeDir="false" afterPath="$PROJECT_DIR$/note.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/volumes/app/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/volumes/app/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +112,8 @@
       <workItem from="1692773351972" duration="5753000" />
       <workItem from="1693034107591" duration="3523000" />
       <workItem from="1693895920399" duration="8459000" />
-      <workItem from="1693997314559" duration="3858000" />
+      <workItem from="1693997314559" duration="5876000" />
+      <workItem from="1694066738348" duration="9422000" />
     </task>
     <servers />
   </component>
