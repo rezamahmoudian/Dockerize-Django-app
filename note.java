@@ -129,6 +129,11 @@ hata mitonim az yek dockerfile chand image bsazim
 "docker build -t website:latest -t website:0.0.1"
 az docker file ma do image ba name website dade mishavad k version yeki latest hast va version dige adadi neveshte mishavad
 
+"RUN vs CMD"
+dar docker file dastorati k baraye sakht image niaz darim ra ba dastor RUN ejra mikonim vali dastorati k niaz nist
+dar image ejra shavand va faghat vaghti k ma image ra run kardim va b container tabdil shod ejra shavand
+(mesl ejraye gunicorn ya start project) bayad anhara ba dastor CMD ejra konim
+
 
 "docker-compose"
 ma dar yek project az chandin image estefade mikonim
@@ -138,7 +143,7 @@ pas ma yek image nadarim va chand image darim k bayad dar yek network b tor khas
 kar konnad
 baraye in hadaf behtarin kar estefade az docker compose hast
 
-agar docker file dashte bashim toye docker compose bayad az on buil bgirim 'build:<esme image>'
+agar docker file dashte bashim toye docker compose bayad az on buil bgirim 'build:<directory k Docker file toye on gharar dare>'
 vali age docker file nadashtim va mikhastim mostaghiman az image estefade konim b in shekl minevisim 'image:<esme image>'
 
 az docker compose baraye in estefade mikonim k digae niazi b zadan dastorat docker nabashad masalan b jaye
@@ -160,10 +165,20 @@ start kardan container haye mojod dar docker compose
 run shodan container ha b sorat diatach va bdon niaz b baz negah dashtan terminal
 
 
+"docker-compose up --build"
+vaghti dar docker-compose ma niaz b build gereftan bod bayad in dastor ra bzanim
+vaghti build gerefta shod agar docker-compose ra down kardin baraye up dobare niaz b build nist
+chon ghablan image az ha buil gerefte shod
+
+
 "docker-compose down"
 ham container ra stop mikonad ham anra hazf mikonad
 
 
+
+' ''
+dockerize django app
+'''
 
 "app media static dbdata"(etelaat databse) bayad dar directorihaye khas zakhire shavand chon gahi oghat niyaz ast
 b anha dastresi dashte bashim va masalan backup anha ra dar server digar zakhire konim,...
@@ -191,9 +206,7 @@ yek file hast k config haye asli nginx dar an gharar migirand va bayad dar file 
 
 
 "docker-compose.yml"
-
 type bind yani inke directioryi k toye syestem mn hast bind she b directoryi k roye image hast
-
 
 
 "DockerFile"
@@ -222,6 +235,9 @@ az image nginx:alpine estefade mikonad va config defalt image ra pak mikonad va 
 b on directory ezafe mikone
 
 "default.conf"
+upstream:
+    dar upstream ma bayad esme service ya container mojod dar docker-compose ra bnvisim va porti az in service k bayad
+    listen shavad ro ham jelosh minevisim
 yel upstream b esme app misazim va migim k in upstream port 8000 ro gosh kone va on app ro roye port 80 proxy kone
 in upstream ra bayad b allowed host ezafe konim
 
@@ -325,3 +341,11 @@ dastore 'sqlflush' table haye mojod dar database ro b ma namayesh mide pass bara
 pas kheyli rahat mitonim az on baraye test amade bodan mysql estefade konim va baraks migration khoroji on ro ham niaz nadarim
 va ba namayesh nadadanesh ham moshkeli nadarim
 
+
+
+
+??
+expose:
+    yani containter ma dar in port faghat be sorat local va mahali dar dastres bashad va az kharegh b on dastresi nadashte bashim
+    masalan container nginx dar ba estefade az port 3306 mariadb b on dastresi dashte bashe vali ma b tor mostaghim az khareg
+    app ba estefade az port 3306 b on dastresi nadashte bashihim
